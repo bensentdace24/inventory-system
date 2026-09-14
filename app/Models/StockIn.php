@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class StockIn extends Model
 {
-    protected $fillable = ['item_id', 'quantity', 'stock_in_date', 'remarks'];
+    protected $fillable = [
+        'inventory_item_id',
+        'quantity',
+        'stock_in_date',
+        'remarks',
+    ];
 
-    public function item()
+    public function inventoryItem()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(InventoryItem::class);
     }
 }

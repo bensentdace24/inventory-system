@@ -6,11 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Withdrawal extends Model
 {
-    protected $fillable = ['item_id', 'custodian_id', 'quantity', 'withdrawal_date', 'purpose', 'remarks'];
+    protected $fillable = [
+        'inventory_item_id',
+        'custodian_id',
+        'quantity',
+        'withdrawal_date',
+        'purpose',
+        'remarks',
+    ];
 
-    public function item()
+    public function inventoryItem()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(InventoryItem::class);
     }
 
     public function custodian()

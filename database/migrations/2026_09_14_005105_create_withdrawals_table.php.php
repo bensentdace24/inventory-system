@@ -8,15 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('stock_ins', function (Blueprint $table) {
+        Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('inventory_item_id')
                 ->constrained('inventory_items')
                 ->cascadeOnDelete();
 
+            $table->foreignId('custodian_id')
+                ->constrained('custodians')
+                ->restrictOnDelete();
+
             $table->integer('quantity');
-            $table->date('stock_in_date');
+            $table->date('withdrawal_date');
+            $table->string('purpose')->nullable();
             $table->text('remarks')->nullable();
 
             $table->timestamps();
@@ -25,6 +30,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('stock_ins');
+        Schema::dropIfExists('withdrawals');
     }
 };

@@ -39,13 +39,18 @@ class InventoryItem extends Model
         'remaining_quantity' => 'integer',
     ];
 
-    public const STATUS_OPTIONS = [
-        'Serviceable',
-        'Unserviceable',
-        'For Repair',
-        'For Disposal',
-        'Disposed',
-        'Lost',
-        'Borrowed',
-    ];
+    public function withdrawals()
+    {
+        return $this->hasMany(Withdrawal::class);
+    }
+
+    public function stockIns()
+    {
+        return $this->hasMany(StockIn::class);
+    }
+
+    public function returns()
+    {
+        return $this->hasMany(ItemReturn::class);
+    }
 }
