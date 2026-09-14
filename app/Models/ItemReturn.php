@@ -8,11 +8,18 @@ class ItemReturn extends Model
 {
     protected $table = 'item_returns';
 
-    protected $fillable = ['item_id', 'custodian_id', 'quantity', 'return_date', 'condition', 'remarks'];
+    protected $fillable = [
+        'inventory_item_id',
+        'custodian_id',
+        'quantity',
+        'return_date',
+        'condition',
+        'remarks',
+    ];
 
-    public function item()
+    public function inventoryItem()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(InventoryItem::class);
     }
 
     public function custodian()
