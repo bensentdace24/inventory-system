@@ -21,6 +21,7 @@ class WithdrawalController extends Controller
         ]);
 
         return DB::transaction(function () use ($validated) {
+
             $item = InventoryItem::lockForUpdate()
                 ->findOrFail($validated['inventory_item_id']);
 
@@ -32,7 +33,9 @@ class WithdrawalController extends Controller
             }
 
             $item->remaining_quantity -= $validated['quantity'];
+
             $item->date_of_withdrawal = $validated['withdrawal_date'];
+
             $item->save();
 
             $withdrawal = Withdrawal::create($validated);

@@ -17,6 +17,11 @@ class ItemReturn extends Model
         'remarks',
     ];
 
+    protected $casts = [
+        'return_date' => 'date:Y-m-d',
+        'quantity' => 'integer',
+    ];
+
     public function inventoryItem()
     {
         return $this->belongsTo(InventoryItem::class);

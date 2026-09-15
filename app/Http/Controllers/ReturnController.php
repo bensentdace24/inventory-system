@@ -26,6 +26,7 @@ class ReturnController extends Controller
                 ->findOrFail($validated['inventory_item_id']);
 
             $item->remaining_quantity += $validated['quantity'];
+
             $item->date_of_returned = $validated['return_date'];
 
             $item->save();

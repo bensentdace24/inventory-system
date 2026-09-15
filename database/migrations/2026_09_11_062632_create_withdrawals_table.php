@@ -6,26 +6,28 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inventory_items')->constrained()->cascadeOnDelete();
-            $table->foreignId('custodian_id')->constrained()->restrictOnDelete();
+
+            $table->foreignId('inventory_item_id')
+                ->constrained('inventory_items')
+                ->cascadeOnDelete();
+
+            $table->foreignId('custodian_id')
+                ->constrained('custodians')
+                ->restrictOnDelete();
+
             $table->integer('quantity');
             $table->date('withdrawal_date');
             $table->string('purpose')->nullable();
             $table->text('remarks')->nullable();
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('withdrawals');

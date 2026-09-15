@@ -17,13 +17,14 @@ class InventoryItem extends Model
         'acquisition_date',
         'cost',
         'quantity',
-        'date_of_withdrawal',
         'remaining_quantity',
+        'date_of_withdrawal',
         'date_of_returned',
         'salvage_value',
         'custodian',
         'depreciation_expense',
         'book_value',
+        'status',
         'status_remarks',
     ];
 
@@ -31,10 +32,12 @@ class InventoryItem extends Model
         'acquisition_date' => 'date:Y-m-d',
         'date_of_withdrawal' => 'date:Y-m-d',
         'date_of_returned' => 'date:Y-m-d',
+
         'cost' => 'decimal:2',
         'salvage_value' => 'decimal:2',
         'depreciation_expense' => 'decimal:2',
         'book_value' => 'decimal:2',
+
         'quantity' => 'integer',
         'remaining_quantity' => 'integer',
     ];

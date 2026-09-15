@@ -13,6 +13,11 @@ class StockIn extends Model
         'remarks',
     ];
 
+    protected $casts = [
+        'stock_in_date' => 'date:Y-m-d',
+        'quantity' => 'integer',
+    ];
+
     public function inventoryItem()
     {
         return $this->belongsTo(InventoryItem::class);

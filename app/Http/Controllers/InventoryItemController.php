@@ -29,10 +29,10 @@ class InventoryItemController extends Controller
             'status_remarks' => 'nullable|string',
         ]);
 
-        // New inventory starts with all quantity available.
+        // New item starts with all its quantity available.
         $validated['remaining_quantity'] = $validated['quantity'];
 
-        // Automatically calculate book value when blank.
+        // Automatically calculate book value if none was provided.
         $validated['book_value'] =
             $validated['book_value']
             ?? (
@@ -57,7 +57,9 @@ class InventoryItemController extends Controller
         $item = InventoryItem::findOrFail($id);
 
         $validated = $request->validate([
-            'asset_serial_number' => 'required|string|unique:inventory_items,asset_serial_number,' . $id,
+            'asset_serial_number' =>
+            'required|string|unique:inventory_items,asset_serial_number,' . $id,
+
             'item_description' => 'required|string',
             'acquisition_date' => 'required|date',
             'cost' => 'required|numeric|min:0',

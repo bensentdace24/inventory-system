@@ -23,6 +23,7 @@ class StockInController extends Controller
             $item = InventoryItem::lockForUpdate()
                 ->findOrFail($validated['inventory_item_id']);
 
+            // Add the incoming quantity to total and remaining stock.
             $item->quantity += $validated['quantity'];
             $item->remaining_quantity += $validated['quantity'];
 
