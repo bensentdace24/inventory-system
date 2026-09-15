@@ -56,4 +56,8 @@ class InventoryItem extends Model
     {
         return $this->hasMany(ItemReturn::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

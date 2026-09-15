@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\InventoryItem;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
-    public function items()
+    public function inventoryItems()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(InventoryItem::class);
     }
 }
